@@ -1,0 +1,3 @@
+Soy un fichero de texto 22
+que tal estas?
+muy bienS oy un texto metido en phpSoy un texto metido en php
