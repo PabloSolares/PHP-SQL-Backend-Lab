@@ -1,18 +1,28 @@
-<?php require_once 'includes/helpers.php' ?>
 
     <aside id="sidebar">
-                
+    <div id="buscador" class="bloque">
+        <h3>Buscar</h3>
+        <form action="buscar.php" method="POST">
+
+            <input type="text" name="busqueda">
+
+            <input type="submit" value="Buscar">
+
+        </form>
+    </div>
                 <?php if(isset($_SESSION['usuario'])): ?>
                 <div id="usaurio-logueado" class="bloque">
                         <h3>Bienvenido: <?= $_SESSION['usuario']['nombre'].' '. $_SESSION['usuario']['apellidos'] ?></h3>
                         <!--Botones-->
 
-                    <a class="boton boton-verde" href="cerrar.php">Crear entradas</a>
-                    <a class="boton boton-azul" href="cerrar.php">Crear categorias</a>
-                    <a class="boton boton-naranja" href="cerrar.php">Mis datos</a>    
+                    <a class="boton boton-verde" href="crear-entradas.php">Crear entradas</a>
+                    <a class="boton boton-azul" href="crear-categoria.php">Crear categorias</a>
+                    <a class="boton boton-naranja" href="mis-datos.php">Mis datos</a>    
                     <a class="boton boton-rojo" href="cerrar.php">Cerrar Sesion</a>
                 </div>
                 <?php endif; ?>
+
+                <?php if(!isset($_SESSION['usuario'])): ?>
 
                 <div id="login" class="bloque">
 
@@ -69,6 +79,8 @@
                         <input type="submit" value="Entrar" name="submit">
 
                     </form>
+                    <?php borrarErrores(); ?>
                 </div>
-                <?php borrarErrores(); ?>
+                <?php endif; ?>
+
             </aside>

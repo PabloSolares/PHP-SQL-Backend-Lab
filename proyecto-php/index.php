@@ -1,4 +1,6 @@
 <?php require_once 'includes/cabecera.php'?>
+<?php require_once 'includes/helpers.php'?>
+
 
     <!--Barra lateral-->
     <?php require_once 'includes/lateral.php'?>
@@ -8,60 +10,31 @@
         <div id="principal"> 
             
             <h1>Ultimas entradas</h1>
-            <article class="entrada">
-                <a href="">
-                    <h2>Titulo de mi entrada</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid eos culpa libero, ipsam fugit
-                        necessitatibus quae earum assumenda ipsa vel minus, sapiente laborum dignissimos rerum
-                        laboriosam
-                        nemo? Incidunt, culpa natus?
-                    </p>
-                </a>
-            </article>
 
-            <article class="entrada">
-                <a href="">
-                    <h2>Titulo de mi entrada</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid eos culpa libero, ipsam
-                        fugit
-                        necessitatibus quae earum assumenda ipsa vel minus, sapiente laborum dignissimos rerum
-                        laboriosam
-                        nemo? Incidunt, culpa natus?
-                    </p>
-                </a>
-            </article>
-
-            <article class="entrada">
-                <a href="">
-                    <h2>Titulo de mi entrada</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid eos culpa libero,
-                        ipsam fugit
-                        necessitatibus quae earum assumenda ipsa vel minus, sapiente laborum dignissimos rerum
-                        laboriosam
-                        nemo? Incidunt, culpa natus?
-                    </p>
-                </a>
-            </article>
-
-            <article class="entrada">
+            <?php 
+                $entradas = conseguirEntradas($db , TRUE);
                 
-                <a href="">
-                    <h2>Titulo de mi entrada</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid eos culpa libero,
-                        ipsam fugit
-                        necessitatibus quae earum assumenda ipsa vel minus, sapiente laborum dignissimos
-                        rerum
-                        laboriosam
-                        nemo? Incidunt, culpa natus?
-                    </p>
-                </a>
-            </article>
+                if(!empty($entradas)):
+                    while ($entrada = mysqli_fetch_assoc($entradas)):
+            ?> 
+                        <article class="entrada">
+                            <a href="entrada.php?id=<?=$entrada['id'] ?>">
+                                <h2><?= $entrada['titulo']?></h2>
+                                <span class="fecha"><?=$entrada['categoria']. ' | '. $entrada['fecha']?></span>
+
+                                <p>
+                                    <?=substr($entrada['descripcion'], 0,180)."..."?>              
+                                </p>
+                            </a>
+                        </article>
+                <?php  
+                        endwhile;
+                    endif;   
+                ?>   
+                
+            
             <div id="ver-todas">
-                <a href="">Ver todas las entradas</a>
+                <a href="entradas.php">Ver todas las entradas</a>
             </div>
         </div>
        

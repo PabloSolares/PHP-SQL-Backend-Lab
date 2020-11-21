@@ -231,6 +231,12 @@ input[type="button"],
     margin-top: 50px;
 }
 
+.fecha{
+    color: #4e4e4e;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
 /*Pie de pagina*/
 
 #pie{

@@ -1,4 +1,6 @@
 <?php require_once 'includes/conexion.php'?>
+<?php require_once 'includes/helpers.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,32 +17,33 @@
     <header id="header">
         <!--logotipo-->
         <div id="logo">
-            <a href="index.html">Blog de Videojuegos</a>
+            <a href="index.php">Blog de Videojuegos</a>
         </div>
         <div class="clearfix"></div>
         <!--Menu-->
+        
         <nav id="nav">
             <ul>
                 <li>
-                    <a href="index.html">Inicio</a>
+                    <a href="index.php">Inicio</a>
+                </li>
+                <?php $categorias = conseguirCategorias($db);
+                if(!empty($categorias)):
+                while($categoria = mysqli_fetch_assoc($categorias)) : 
+                ?>
+                    <li>
+                        <a href="categoria.php?id=<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></a>
+                    </li>
+                <?php 
+                
+                endwhile; 
+                endif;
+                ?>
+                <li>
+                    <a href="index.php">Sobre mi</a>
                 </li>
                 <li>
-                    <a href="index.html">Categoria 1</a>
-                </li>
-                <li>
-                    <a href="index.html">Categoria 2</a>
-                </li>
-                <li>
-                    <a href="index.html">Categoria 3</a>
-                </li>
-                <li>
-                    <a href="index.html">Categoria 4</a>
-                </li>
-                <li>
-                    <a href="index.html">Sobre mi</a>
-                </li>
-                <li>
-                    <a href="index.html">Contacto</a>
+                    <a href="index.php">Contacto</a>
                 </li>
             </ul>
         </nav>
